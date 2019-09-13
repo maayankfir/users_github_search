@@ -9,7 +9,8 @@ import axios from 'axios';
 class App extends Component {
   state = {
     users: [],
-    loading: false
+    loading: false,
+    showClear: false
   };
 
   searchUsers = async text => {
@@ -20,12 +21,20 @@ class App extends Component {
     this.setState({ users: res.data.items, loading: false });
   };
 
+  clearSearch = () => {
+    this.setState({ users: [], loading: false });
+  };
+
   render() {
     return (
       <div className='App'>
         <Navbar />
         <div className='container'>
-          <Search searchUsers={this.searchUsers} />
+          <Search
+            searchUsers={this.searchUsers}
+            clearSearch={this.clearSearch}
+            showClear={this.state.users.length > 0 ? true : false}
+          />
           <Users users={this.state.users} loading={this.state.loading} />
         </div>
       </div>

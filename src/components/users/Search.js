@@ -34,6 +34,15 @@ export class Search extends Component {
             className='btn btn-dark btn-block'
           />
         </form>
+
+        {this.props.showClear && (
+          <button
+            className='btn btn-light btn-block'
+            onClick={this.props.clearSearch}
+          >
+            Clear
+          </button>
+        )}
       </div>
     );
   }
